@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "獲得" %} {% endblock %}
+
+{% block content %}
+
+<div class="index song-score">
+    <h2>{% trans "現在のポイント" %}: {{ user.points }} pt</h2>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="unlock">
+        {% for key, label, cost in purchasable_catchphrases %}
+            <div class="unlock-card">
+                <h3>{{ label }}</h3>
+                <p>{{ cost }} pt</p>
+                {% if key in purchased %}
+                    <p>{% trans "購入済み" %}</p>
+                {% else %}
+                    <button type="submit" name="catchphrase" value="{{ key }}">{% trans "購入" %}</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</form>
+
+{% for message in messages %}
+    <p>{{ message }}</p>
+{% endfor %}
+
+
+{% endblock %}

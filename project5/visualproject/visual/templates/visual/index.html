@@ -1,0 +1,608 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Top {% endblock %}
+{% block h1 %} Top {% endblock %}
+
+{% block content %}
+
+<div id="container">
+
+<!--▼▼▼▼▼ここから「メイン画像」-->
+<div id="mainimg">
+<div>
+
+<div class="text">
+<p>
+	{{ today }} <br>
+	{% if holiday_name %}
+		{{ holiday_name }}
+	{% else %}
+		祝日なし
+	{% endif %}
+</p>
+</div>
+
+<a href="dice" class="play-button">Dice</a>
+<a href="gorilla" class="play-button">Gorilla</a>
+<a href="click-game" class="play-button">Click</a>
+
+<div class="btn">
+<p><a href="{% url 'visual:contact' %}"><i class="fa-regular fa-envelope"></i>お問い合わせ</a></p>
+<p><a href="#"><i class="fa-regular fa-file-lines"></i>資料請求</a></p>
+</div>
+
+</div>
+</div>
+<!--▲▲▲▲▲ここまで「メイン画像」-->
+
+<main>
+
+<!--▼▼▼▼▼ここから「こんなお悩みありませんか？」-->
+<section class="bg1 bg-pattern1 arrow">
+
+<h2 class="c">こんなお悩みありませんか？<span>Do you have any of these problems?</span></h2>
+
+<div class="list-grid1">
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/icon1.png' %}" alt=""></figure>
+<h4 class="kazari">デザインが古くて、<span class="color-check">他社と比べて見劣り</span>している…</h4>
+<p>サイト制作からもう15年。自分で見ていてもさすがに古さを実感するようになった。サイトが古い事でかえってマイナスイメージなのでは。</p>
+<span class="num">01</span>
+</div>
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/icon2.png' %}" alt=""></figure>
+<h4 class="kazari"><span class="color-check">予算内</span>で、どこまで実現できるのか不安…</h4>
+<p>予算が限られているのでサイト制作をしてくれる業者が見つかるか不安。最初だけ安く提示されて後で高額請求などもよく聞くし…。</p>
+<span class="num">02</span>
+</div>
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/icon3.png' %}" alt=""></figure>
+<h4 class="kazari">売上につながる<span class="color-check">サイト運営のアドバイス</span>が欲しい…</h4>
+<p>リニューアルするだけじゃなく、その後のステップアップのサポートもしてくれるような業者を見つけたい。</p>
+<span class="num">03</span>
+</div>
+
+</div>
+<!--/.list-grid1-->
+
+</section>
+<!--▲▲▲▲▲ここまで「こんなお悩みありませんか？」-->
+
+
+
+<!--▼▼▼▼▼ここから「全てサンプルカンパニーが解決します！」-->
+<section class="bg-primary-color">
+
+<div class="c">
+<h2 class="inline-block relative">
+全てサンプルカンパニーが解決します！
+<div><img src="{% static 'visual/images/onayami.png' %}" alt="そのお悩み"></div>
+</h2>
+</div>
+
+<div class="list-grid1">
+
+<div class="list up">
+<figure class="icon"><img src="{% static 'visual/images/icon1.png' %}" alt=""></figure>
+<h4><span class="marker">最新トレンドで差をつける</span></h4>
+<p>1000件以上の制作実績を持つクリエイターが、貴社の強みと最新デザインを組み合わせた、競合と差別化できるWEBサイトをご提案します。</p>
+<span class="num">01</span>
+</div>
+
+<div class="list up">
+<figure class="icon"><img src="{% static 'visual/images/icon2.png' %}" alt=""></figure>
+<h4><span class="marker">安心の定額制プラン</span></h4>
+<p>必要な機能と優先順位を明確化し、段階的な開発計画をご提案。見積項目を詳細に明示し、追加費用の心配がない定額制で対応します。</p>
+<span class="num">02</span>
+</div>
+
+<div class="list up">
+<figure class="icon"><img src="{% static 'visual/images/icon3.png' %}" alt=""></figure>
+<h4><span class="marker">成果を生み出す伴走支援</span></h4>
+<p>制作後もアクセス解析とユーザー行動の調査結果をもとに、具体的な改善施策をご提案。月次レポートで成長をサポートします。</p>
+<span class="num">03</span>
+</div>
+
+</div>
+<!--/.list-grid1-->
+
+</section>
+<!--▲▲▲▲▲ここまで「全てサンプルカンパニーが解決します！」-->
+
+
+
+<!--▼▼▼▼▼ここから「お客様の声」-->
+<section class="bg3 bg-pattern3" id="koe">
+
+<h2 class="c">お客様の声<span>Customer Testimonials</span></h2>
+
+<div class="list-normal1">
+
+<div class="list up">
+<figure><img src="{% static 'visual/images/photo1.jpg' %}" alt=""></figure>
+<div class="text">
+<h4>IT企業の強みが伝わるサイトで採用力アップ</h4>
+<p>ベンチャー企業らしい先進的なデザインと、技術力が伝わるコンテンツ作りが秀逸でした。特に開発事例や技術ブログの構成は期待以上。リニューアル後、エンジニアの応募が3倍に増え、採用コストの削減にも繋がっています。</p>
+<p class="name">株式会社〇〇 代表取締役 中村様</p>
+</div>
+</div>
+
+<div class="list up reverse">
+<figure><img src="{% static 'visual/images/photo2.jpg' %}" alt=""></figure>
+<div class="text">
+<h4>社員の魅力が伝わるサイトで会社の雰囲気が一新</h4>
+<p>女性社員が多い当社の魅力を、スタッフインタビューや福利厚生の紹介で上手く表現していただきました。社員からも『会社の良さが伝わる』と好評です。求人応募も増え、特に女性エンジニアからの問い合わせが着実に増えています。</p>
+<p class="name">株式会社〇〇 代表取締役 吉田様</p>
+</div>
+</div>
+
+<div class="list up">
+<figure><img src="{% static 'visual/images/photo3.jpg' %}" alt=""></figure>
+<div class="text">
+<h4>インスタ映えするカフェの世界観をサイトでも表現</h4>
+<p>写真の見せ方や色使いなど、カフェの雰囲気を完璧に表現していただき感動しました。予約システムの導入後は電話対応が減り、スタッフの負担も軽減。SNSとの連携で若い層の集客も好調で、休日は予約でほぼ満席になっています。</p>
+<p class="name">〇〇 Cafe オーナー 木村様</p>
+</div>
+</div>
+
+</div>
+<!--/.list-normal1-->
+
+<div class="r"><p class="btn1"><a href="#" class="inline-block">もっと見る</a></p></div>
+
+</section>
+<!--▲▲▲▲▲ここまで「お客様の声」-->
+
+
+
+<!--▼▼▼▼▼ここから「制作実績」-->
+<section id="products">
+
+<h2 class="bg-slideup">
+<div class="image">
+<div class="en-text">Production Achievements</div>
+<div class="jp-text">制作実績</div>
+</div>
+</h2>
+
+<div class="list-grid-simple">
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb1.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb2.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb3.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb4.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb5.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb6.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb1.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb2.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb3.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb4.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb5.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+<div class="list">
+<figure><img src="{% static 'visual/images/thumb6.jpg' %}" alt=""></figure>
+<h4 class="c">株式会社〇〇様</h4>
+</div>
+
+</div>
+<!--/.list-grid1-->
+
+<p class="btn1"><a href="#">もっと見る</a></p>
+
+</section>
+<!--▲▲▲▲▲ここまで「制作実績」-->
+
+
+
+<!--▼▼▼▼▼ここから「料金プラン」-->
+<section class="bg1 bg-pattern1" id="plan">
+
+<h2 class="c">料金プラン<span>Rate Plans</span></h2>
+
+<div class="scroll">
+
+<table class="ta1 plan blur">
+<tr>
+<th>&nbsp;</th>
+<th><i class="fa-solid fa-crown"></i>エコノミープラン<span><span class="small">￥</span>50,000</span></th>
+<th><i class="fa-solid fa-crown"></i>スタンダードプラン<span><span class="small">￥</span>100,000</span><span class="osusume">おすすめ</span></th>
+<th><i class="fa-solid fa-crown"></i>プレミアムプラン<span><span class="small">￥</span>300,000<span class="small">〜</span></span></th>
+</tr>
+<tr>
+<td>ページ数</td>
+<td>5ページまで</td>
+<td>10ページまで</td>
+<td>20ページまで</td>
+</tr>
+<tr>
+<td>デザイン案</td>
+<td>1案を提案</td>
+<td>2案を提案</td>
+<td>3案を提案</td>
+</tr>
+<tr>
+<td>サポート期間</td>
+<td>1ヶ月間</td>
+<td>3ヶ月間</td>
+<td>6ヶ月間</td>
+</tr>
+<tr>
+<td>見出し</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+</tr>
+<tr>
+<td>見出し</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+</tr>
+<tr>
+<td>見出し</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+<td>サンプルテキスト</td>
+</tr>
+</table>
+
+</div>
+
+</section>
+<!--▲▲▲▲▲ここまで「料金プラン」-->
+
+
+
+<!--▼▼▼▼▼ここから「よく頂く質問」-->
+<section class="bg-primary-color" id="faq">
+
+<div class="c2">
+
+<div class="title">
+<h2>よく頂く質問<span>FAQ</span></h2>
+</div>
+<!--/.title-->
+
+<div class="text">
+
+<dl class="faq">
+
+<dt class="openclose">ここに質問を書きます。クリックで回答が開きます。</dt>
+<dd>ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。</dd>
+
+<dt class="openclose">ここに質問を書きます。クリックで回答が開きます。</dt>
+<dd>ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。</dd>
+
+<dt class="openclose">ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。</dt>
+<dd>ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。<br>
+ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。</dd>
+
+<dt class="openclose">ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。ここに質問を書きます。クリックで回答が開きます。</dt>
+<dd>ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。<br>
+ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。ここに回答を書きます。サンプルテキスト。</dd>
+
+</dl>
+
+</div>
+<!--/.text-->
+
+</div>
+<!--/.c2-->
+
+<div class="r"><p class="btn1"><a href="#" class="inline-block">もっと見る</a></p></div>
+
+</section>
+<!--▲▲▲▲▲ここまで「よく頂く質問」-->
+
+
+
+<!--▼▼▼▼▼ここから「制作の流れ」-->
+<section class="bg2 bg-pattern2" id="flow">
+
+<h2 class="c">制作の流れ<span>Production Flow</span></h2>
+
+<div class="list-normal1 flow">
+
+<div class="list up">
+<div class="text">
+<h4><i class="fa-solid fa-ear-listen"></i>ヒアリング</h4>
+<p>お客様のビジネス内容やサイト制作の目的をしっかりとお伺いします。ターゲット層やご希望のデザインイメージ、必要な機能について具体的にヒアリングし、課題解決に向けた方向性を明確化します。ご要望に応じて、参考サイトや色使い、写真素材などのイメージも共有いただきます。</p>
+</div>
+</div>
+
+<div class="list up">
+<div class="text">
+<h4><i class="fa-solid fa-palette"></i>デザイン制作</h4>
+<p>ヒアリング内容をもとに、お客様のブランドに最適なデザイン案を作成します。PCやスマホなど、異なるデバイスでの見え方を意識したレスポンシブデザインを採用。カラーパレットやフォントの選定、配置の細部までこだわり、魅力的で使いやすいデザインを形にします。必要に応じて修正を行い、最終デザインを確定します。</p>
+</div>
+</div>
+
+<div class="list up">
+<div class="text">
+<h4><i class="fa-solid fa-code"></i>コーディング</h4>
+<p>確定したデザインをHTML、CSS、JavaScriptを使用してコーディングします。SEOを考慮した構造や、読み込み速度を意識した軽量なコードで、高品質なサイトを構築します。さらに、スマホやタブレットでも快適に操作できるよう、レスポンシブ対応も徹底します。お客様が簡単に更新できるCMSの導入もオプションで対応します。
+
+</p>
+</div>
+</div>
+
+<div class="list up">
+<div class="text">
+<h4><i class="fa-solid fa-globe"></i>公開＆サポート</h4>
+<p>完成したサイトをサーバーにアップロードし、正式に公開します。公開後も安心して運営いただけるよう、更新方法のレクチャーや不具合対応を含む運用サポートをご提供します。必要に応じて定期的な改善提案や分析データの共有も行い、サイトの成長をサポートします。</p>
+</div>
+</div>
+
+</div>
+<!--/.list-normal1-->
+
+</section>
+<!--▲▲▲▲▲ここまで「制作の流れ」-->
+
+
+
+<!--▼▼▼▼▼ここから「テキストスライドショー」-->
+<div class="text-slide-wrapper">
+<div class="text-slide">
+<span>SAMPLE COMPANY</span>
+</div>
+</div>
+<!--▲▲▲▲▲ここまで「テキストスライドショー」-->
+
+
+
+<!--▼▼▼▼▼ここから「会社概要」-->
+<section id="company">
+
+<div class="bg-slideup mb-space-large">
+<div class="image">
+</div>
+</div>
+
+<div class="c2">
+
+<div class="title">
+<h2>会社概要<span>Company</span></h2>
+</div>
+<!--/.title-->
+
+<div class="text">
+
+<table class="ta1">
+<caption>大見出しが必要ならここを使います</caption>
+<tr>
+<th>見出し</th>
+<td>ここに説明など入れて下さい。サンプルテキスト。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明など入れて下さい。サンプルテキスト。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明など入れて下さい。サンプルテキスト。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明など入れて下さい。サンプルテキスト。</td>
+</tr>
+<tr>
+<th>見出し</th>
+<td>ここに説明など入れて下さい。サンプルテキスト。</td>
+</tr>
+</table>
+
+</div>
+<!--/.text-->
+
+</div>
+<!--/.c2-->
+
+</section>
+<!--▲▲▲▲▲ここまで「会社概要」-->
+
+
+
+<!--▼▼▼▼▼ここから「問い合わせ＆資料請求」-->
+<section class="padding0">
+
+<h2 class="dn">問い合わせ＆資料請求</h2>
+
+<div class="list-c2">
+
+<div class="list image1">
+<div class="text">
+<h4><span class="sub-text">お問い合わせ</span><span class="main-text">Contact</span></h4>
+<p class="btn1"><a href="{% url 'visual:contact' %}">お問い合わせフォーム</a></p>
+</div>
+</div>
+
+<div class="list image2">
+<div class="text">
+<h4><span class="sub-text">資料請求</span><span class="main-text">Request</span></h4>
+<p class="btn1"><a href="#">資料請求フォーム</a></p>
+</div>
+</div>
+
+</div>
+<!--/.list-c2-->
+
+</section>
+<!--▲▲▲▲▲ここまで「問い合わせ＆資料請求」-->
+
+
+
+<!--▼▼▼▼▼ここから「お知らせ」-->
+<section>
+
+<div class="c2">
+
+<div class="title">
+<h2>お知らせ<span>News</span></h2>
+</div>
+<!--/.title-->
+
+<div class="text">
+
+<dl class="new">
+<dt>2000/00/00<span>その他</span></dt>
+<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+<dt>2000/00/00<span class="icon-bg1">重要</span></dt>
+<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+<dt>2000/00/00<span class="icon-bg2">サービス</span></dt>
+<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+<dt>2000/00/00</dt>
+<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+<dt>2000/00/00<span>その他</span></dt>
+<dd>サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。サンプルテキスト。</dd>
+</dl>
+
+</div>
+<!--/.text-->
+
+</div>
+<!--/.c2-->
+
+</section>
+<!--▲▲▲▲▲ここまで「お知らせ」-->
+
+
+
+<!--▼▼▼▼▼ここから「サムネイルスライドショー」-->
+<section class="padding-lr0">
+
+<div class="slide-thumbnail1">
+<div class="img rtl">
+<div><a href="#"><img src="{% static 'visual/images/thumb1.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb2.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb3.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb4.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb5.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb6.jpg' %}" alt=""></a></div>
+</div>
+</div>
+
+<div class="slide-thumbnail1">
+<div class="img ltr">
+<div><a href="#"><img src="{% static 'visual/images/thumb1.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb2.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb3.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb4.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb5.jpg' %}" alt=""></a></div>
+<div><a href="#"><img src="{% static 'visual/images/thumb6.jpg' %}" alt=""></a></div>
+</div>
+</div>
+
+</section>
+<!--▲▲▲▲▲ここまで「サムネイルスライドショー」-->
+
+</main>
+
+</div>
+<!--/#container-->
+
+
+
+<!--ローディング-->
+<div id="loading">
+<img src="{% static 'visual/images/logo.png' %}" alt="Loading">
+<div class="progress-container">
+<div class="progress-bar"></div>
+</div>
+</div>
+
+
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+
+
+<!--開閉ブロック-->
+<div id="menubar">
+
+<p class="logo"><img src="{% static 'visual/images/logo.png' %}" alt="SAMPLE COMPANY"></p>
+
+<nav>
+<ul>
+<li><a href="#">ホーム</a></li>
+<li><a href="#koe">お客様の声</a></li>
+<li><a href="#products">制作実績</a>
+	<ul>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	</ul>
+</li>
+<li><a href="#plan">料金プラン</a></li>
+<li><a href="#faq">よく頂く質問</a></li>
+<li><a href="#flow">制作の流れ</a></li>
+<li><a href="{% url 'visual:contact' %}">お問い合わせ</a></li>
+</ul>
+</nav>
+
+</div>
+<!--/#menubar-->
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="{% static 'visual/js/jquery.inview_set.js' %}"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="{% static 'visual/js/main.js' %}"></script>
+
+{% endblock %}

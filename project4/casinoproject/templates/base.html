@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} - カジノアプリ</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'casino/css/style.css' %}">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-left">
+            <img src="{% static 'casino/img/logo.png'%}" class="logo-img">
+            <a class="nav-link-left" href="{% url 'casino:index' %}">TOP</a>
+            <a class="nav-link-left" href="{% url 'casino:baccara-bet' %}">Baccara</a>
+            <a class="nav-link-left" href="{% url 'casino:black_jack-bet' %}">Black Jack</a>
+        </div>
+        <div class="nav-right">
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'accounts:logout' %}" method='post' name='logout'>
+                    {% csrf_token %}
+                    <a class="nav-link mx-3" href="javascript:logout.submit()">ログアウト</a>
+                </form>
+            {% else %}
+                <a class="nav-link-right" href="{% url 'accounts:login' %}">ログイン</a>
+                <a class="nav-link-right" href="{% url 'accounts:signup' %}">会員登録</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="content-body">
+        <h1>{% block h1 %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+</html>

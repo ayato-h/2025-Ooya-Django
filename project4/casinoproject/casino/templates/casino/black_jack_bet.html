@@ -1,0 +1,20 @@
+{% extends 'casino/baccara_bet.html' %}
+{% load static %}
+
+{% block title %} Black Jack {% endblock %}
+{% block h1 %} Black Jack {% endblock %}
+
+{% block bet_form %}
+<h1>▼賭け金▼</h1>
+<form method="post" action="{% url 'casino:black_jack' %}">
+    {% csrf_token %}
+    <input type="number" name="bet_amount" class="amount-text" placeholder="1〜{{ money }}" required>
+
+    <div class="play-buttons">
+        <button type="submit" class="play-button-center" name="bet" value="player">BET</button>
+    </div>
+</form>
+{% endblock bet_form %}
+
+{% block bet_buttons %}{% endblock %}
+{% block road_map %}{% endblock %}

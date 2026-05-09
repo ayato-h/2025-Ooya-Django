@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}アカウント作成{% endblock %}
+{% block content %}
+<h1>アカウント作成</h1>
+<form method="post" class="auth-form">
+    {% csrf_token %}
+    
+    <div>
+        <label>ユーザーID</label>
+        {{ form.username }}
+        {% for error in form.username.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <div>
+        <label>パスワード</label>
+        {{ form.password1 }}
+        {% for error in form.password1.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+        <small>パスワードは8文字以上で設定してください。</small>
+    </div>
+
+    <div>
+        <label>パスワード確認</label>
+        {{ form.password2 }}
+        {% for error in form.password2.errors %}
+            <span class="error">{{ error }}</span>
+        {% endfor %}
+    </div>
+
+    <button type="submit">アカウント作成</button>
+</form>
+{% endblock %}

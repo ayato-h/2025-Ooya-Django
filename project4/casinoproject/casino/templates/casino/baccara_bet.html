@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Baccara {% endblock %}
+{% block h1 %} Baccara {% endblock %}
+
+{% block content %}
+<div class="baccarat-result">
+
+    {% block bet_form %}
+    <h1>▼賭け金▼</h1>
+    <form method="post" action="{% url 'casino:baccara' %}">
+        {% csrf_token %}
+        <input type="number" name="bet_amount" class="amount-text" placeholder="1〜{{ money }}" required>
+
+        {% block bet_buttons %}
+        <div class="play-buttons">
+            <button class="play-button" name="bet" value="player">Player</button>
+            <button class="play-button" name="bet" value="tie">Tie</button>
+            <button class="play-button" name="bet" value="banker">Banker</button>
+        </div>
+        {% endblock bet_buttons %}
+
+    </form>
+    {% endblock bet_form %}
+
+    {% block road_map %}
+    <table class="baccara-table">
+        {% for row in table %}
+        <tr>
+            {% for cell in row %}
+                {% if cell == '⚫︎' %}
+                    <td class="player">{{ cell }}</td>
+                {% elif cell == '✖︎' %}
+                    <td class="banker">{{ cell }}</td>
+                {% elif cell == '△' %}
+                    <td class="tie">{{ cell }}</td>
+                {% else %}
+                    <td class="empty"></td>
+                {% endif %}
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="baccarat-guide">
+        <p>⚫︎ : Player / ✖︎ : Banker / △ : Tie</p>
+    </div>
+    {% endblock road_map %}
+
+</div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Gorilla-Result {% endblock %}
+{% block h1 %} Gorilla-Result {% endblock %}
+
+{% block content %}
+
+<section id="products">
+
+    <div class="gorilla-result">
+        {% if message == 'あたり' %}
+        <img src="{% static 'visual/images/' %}hit-banana.jpg" alt="">
+        {% else %}
+        <img src="{% static 'visual/images/' %}miss-banana.jpg" alt="">
+        {% endif %}
+        
+        <p>{{ message }}</p>
+    </div>
+    
+    <div class="button-container">
+        <form method="get" action="{% url 'visual:gorilla' %}">
+            <button type="submit" class="play-button">もう一度</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

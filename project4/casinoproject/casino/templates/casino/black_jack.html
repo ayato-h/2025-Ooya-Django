@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Black Jack {% endblock %}
+{% block h1 %} Black Jack {% endblock %}
+
+{% block content %}
+<div class="baccarat-hands-container">
+    <div class="baccarat-hands-row">
+
+        <div class="baccarat-hand">
+            <h1>Dealer ▶︎ {{ dealer_score }}</h1>
+            <div class="hand-body">
+                <div class="card-container">
+                    {% if back %}
+                    <img class="card-img" src="{% static 'casino/img/cards/'|add:dealer_cards.0|add:'.png' %}"　alt="{{ dealer_cards.0 }}">
+                    <div class="card-back">?</div>
+                    {% else %}
+                        {% for card in dealer_cards %}
+                        <img class="card-img" src="{% static 'casino/img/cards/'|add:card|add:'.png' %}" alt="{{ card }}">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="baccarat-hand">
+            <h1>Player ▶︎ {{ player_score }}</h1>
+            <div class="hand-body">
+                <div class="card-container">
+                    {% for card in player_cards %}
+                        <img class="card-img" src="{% static 'casino/img/cards/'|add:card|add:'.png' %}" alt="{{ card }}">
+                    {% endfor %}
+                </div>
+            </div>
+            {% if split %}
+                <h1>Player ▶︎ {{ split_score }}</h1>
+                <div class="hand-body">
+                    <div class="card-container">
+                        {% for card in player_split_cards %}
+                            <img class="card-img" src="{% static 'casino/img/cards/'|add:card|add:'.png' %}" alt="{{ card }}">
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="baccarat-result">
+        <h1>{{ result }}</h1>
+        {% if bet != None %}
+        <h3 class="result-text">{{ first_money }}{{ bet }} = {{ money }}</h3>
+        {% endif %}
+        {% if can_draw %}
+            {% if split %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="hit" value="main" class="next-button">HIT</button>
+                </form>
+
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="hit" value="split" class="next-button">HIT (Split)</button>
+                </form>
+            {% else %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="hit" value="main" class="next-button">HIT</button>
+                </form>
+            {% endif %}
+
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="stand" class="next-button">STAND</button>
+            </form>
+            {% if can_split and split == False %}
+                <form method="post">
+                    {% csrf_token %}
+                    <button type="submit" name="split" class="next-button split-button">SPLIT</button>
+                </form> 
+            {% endif %}
+        {% else %}
+            <a href="{% url 'casino:black_jack-bet' %}" class="next-button">もう一度プレイ</a>
+        {% endif %}
+    </div> 
+</div>
+
+{% endblock %}

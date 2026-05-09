@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "フレンド" %} {% endblock %}
+
+{% block content %}
+<div class="index">
+    <div class="song-search">
+        <form method="get" action="{% url 'app:friends-list' %}" class="song-search-form">
+            <div class="song-search-span">
+                <span>{% trans "ユーザー検索" %}</span>
+                <input class="song-search-input" type="text" name="q" placeholder="{% trans 'ユーザー名' %}"
+                    value="{{ query|default:'' }}">
+            </div>
+            <button class="song-search-button" type="submit">{% trans "検索" %}</button>
+        </form>
+        
+        {% if request.GET.error %}
+        <p style="color:red;">{% trans "ユーザー名を入力してください" %}</p>
+        {% endif %}
+    </div>
+    {% if query %}
+    <div class="user_search">
+        <h3>検索結果</h3>
+        <ul>
+            {% for user in search_results %}
+                <li>
+                    <span>{{ user.username }}</span>
+                    <a href="{% url 'app:friend-request' user.id %}">
+                        フレンド申請
+                    </a>
+                </li>
+            {% empty %}
+                <li>ユーザーが見つかりません</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+
+<div class="index-card">
+    <div class="index song-score">
+        <h2>承認待ちの申請</h2>
+        {% if pending_requests %}
+            <table class="score-table">
+                <thead>
+                    <tr>
+                        <th>ユーザー名</th>
+                        <th>リクエスト</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for req in pending_requests %}
+                    <tr>
+                        <td>{{ req.from_user.username }}</td>
+                        <td>
+                            <a href="{% url 'app:friend-accept' req.id %}">承認</a>
+                            <span>/</span>
+                            <a href="{% url 'app:friend-reject' req.id %}">拒否</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <ul>
+                <li>申請はありません</li>
+            </ul>
+        {% endif %}
+    </div>
+    
+    <div class="index song-score">
+        <h2>おすすめフレンド</h2>
+        {% if recommended_users %}
+        <ul>
+            {% for u in recommended_users %}
+                <li>
+                    {{ u.username }} / 
+                    <a href="{% url 'app:friend-request' u.id %}">フレンド申請</a>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>おすすめはありません</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="index song-score">
+    <h2>フレンド一覧</h2>
+    <table class="score-table">
+        <thead>
+            <tr>
+                <th>フレンド名</th>
+                <th>プロフィール</th>
+                <th>点数一覧</th>
+                <th>メッセージ</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for friend in friends %}
+            <tr>
+                <td>{{ friend.username }}</td>
+                <td>
+                    <a href="{% url 'app:friend-profile' friend.id %}">詳細</a>
+                </td>
+                <td>
+                    <a href="{% url 'app:friend-profile' friend.id %}">詳細</a>
+                </td>
+                <td>
+                    <a href="{% url 'app:chat-with-user' friend.id %}">送る</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">フレンドはいません</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="index song-score">
+    <h2>フレンド内ランキング</h2>
+    <table class="score-table friend-table">
+        <thead>
+            <tr>
+                <th>ランキング</th>
+                <th>順位</th>
+                <th>ユーザー名</th>
+                <th>スコア</th>
+            </tr>
+        </thead>
+
+        <!-- 月間曲数ランキング -->
+        <tbody>
+            {% for r in monthly_play_count_ranking %}
+            <tr>
+                {% if forloop.first %}
+                    <th rowspan="{{ monthly_play_count_ranking|length }}">
+                        月間曲数
+                    </th>
+                {% endif %}
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.user__username }}</td>
+                <td>{{ r.count }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">データなし</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <!-- 月間最高点ランキング -->
+        <tbody>
+            {% for r in monthly_max_score_ranking %}
+            <tr>
+                {% if forloop.first %}
+                    <th rowspan="{{ monthly_max_score_ranking|length }}">
+                        月間最高点
+                    </th>
+                {% endif %}
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.user__username }}</td>
+                <td>{{ r.max_score|floatformat:3 }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">データなし</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
+        <!-- 月間最低点ランキング -->
+        <tbody>
+            {% for r in monthly_min_score_ranking %}
+            <tr>
+                {% if forloop.first %}
+                    <th rowspan="{{ monthly_min_score_ranking|length }}">
+                        月間最低点
+                    </th>
+                {% endif %}
+                <td>{{ forloop.counter }}</td>
+                <td>{{ r.user__username }}</td>
+                <td>{{ r.min_score|floatformat:3 }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">データなし</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

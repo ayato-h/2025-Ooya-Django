@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %} カジノアプリ {% endblock %}
+{% block h1 %} カジノアプリ {% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <div class="game-card">
+        <h2 class="game-title">Baccara</h2>
+        <p class="game-text">(説明)　PlayerとBankerのどちらが勝つかを予想するカードゲーム</p>
+        <div class="game-action">
+            <a href="{% url 'casino:baccara-bet' %}">
+                <button class="play-button">Play</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="game-card">
+        <h2 class="game-title">Black Jack</h2>
+        <p class="game-text">(説明)　PlayerとDealerのどちらが21に近い手札を作れるかを競うカードゲーム</p>
+        <div class="game-action">
+            <a href="{% url 'casino:black_jack-bet' %}">
+                <button class="play-button">Play</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="game-container">
+    <div class="game-card">
+        <h2 class="game-title">Poker</h2>
+        <p class="game-text">(説明)</p>
+        <div class="game-action">
+            <a href="{% url 'casino:baccara' %}">
+                <button class="play-button">Play</button>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

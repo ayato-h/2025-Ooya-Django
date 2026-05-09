@@ -1,0 +1,61 @@
+* {
+    font-family: serif;
+    margin: 0px;
+}
+
+a {
+    text-decoration: none;
+}
+
+nav,
+nav *,
+.content-body,
+.content-body * {
+    padding: 10px;
+}
+
+.card {
+    margin-bottom: 20px;
+    padding: 0px;
+}
+
+input {
+    margin: 0 auto;
+}
+
+.logo-img {
+    width: 50px;     
+}
+
+table,
+th,
+td {
+    border: 1px solid #333;
+    border-collapse: collapse;
+}
+
+table {
+    margin: auto;
+    width: 100%;
+}
+
+.book-thumbnail {
+    max-width: 250px;
+    height: auto;
+}
+
+.col-9 .img-thumbnail {
+    max-width: 300px;
+    height: auto;
+}
+
+.col-3 .img-thumbnail {
+    max-width: 200px;
+    height: auto;
+}
+
+.review-text{
+    padding: 0px;
+    margin: 0px;
+}
+

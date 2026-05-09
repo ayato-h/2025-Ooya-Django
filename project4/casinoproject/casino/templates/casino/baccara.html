@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Baccara {% endblock %}
+{% block h1 %} Baccara {% endblock %}
+
+{% block content %}
+<div class="baccarat-hands-container">
+    <div class="baccarat-hands-row">
+        <div class="baccarat-hand">
+            <h1>Player ▶︎ {{ player_score }}</h1>
+            <div class="hand-body">
+                <div class="card-container">
+                    {% for card in player_cards %}
+                        <img class="card-img" src="{% static 'casino/img/cards/'|add:card|add:'.png' %}" alt="{{ card }}">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="baccarat-hand">
+            <h1>Banker ▶︎ {{ banker_score }}</h1>
+            <div class="hand-body">
+                <div class="card-container">
+                    {% for card in banker_cards %}
+                        <img class="card-img" src="{% static 'casino/img/cards/'|add:card|add:'.png' %}" alt="{{ card }}">
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="baccarat-result">
+        <h1>{{ result }}</h1>
+        {% if bet != None %}
+        <h3 class="result-text">{{ first_money }}{{ bet }} = {{ money }}</h3>
+        {% endif %}
+        {% if can_draw %}
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="draw" class="next-button">Draw</button>
+            </form>
+        {% else %}
+            <a href="{% url 'casino:baccara-bet' %}" class="next-button">もう一度プレイ</a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

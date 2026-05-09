@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "お気に入り" %} {% endblock %}
+
+{% block content %}
+    <div class="index">
+    <div class="song-search">
+        <form method="get" action="" class="song-search-form">
+            <div class="song-search-span">
+                <span>{% trans "曲検索" %}</span>
+                <input class="song-search-input" type="text" name="q"
+                    placeholder="{% trans 'アーティスト名や曲名' %}"
+                    value="{{ query|default:'' }}">
+            </div>
+            <button class="song-search-button" type="submit">{% trans "検索" %}</button>
+        </form>
+
+        {% if request.GET.q == "" and request.GET %}
+            <p style="color:red;">{% trans "検索ワードを入力してください" %}</p>
+        {% endif %}
+    </div>
+</div>
+<div class="index song-score">
+{% if user_favorites %}
+    <table class="favorite-table">
+        <thead>
+            <tr>
+                <th class="favorite-th">#</th>
+                <th class="favorite-th"></th>
+                <th class="favorite-th">{% trans "曲名" %}</th>
+                <th class="favorite-th">{% trans "アーティスト" %}</th>
+                <th class="favorite-th">{% trans "アルバム" %}</th>
+                <th class="favorite-th">{% trans "プレビュー" %}</th>
+                <th class="favorite-th">{% trans "点数" %}</th>
+                <th class="favorite-th">{% trans "順位" %}</th>
+                <th class="favorite-th">{% trans "詳細" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in user_favorites %}
+            <tr>
+                <td class="favorite-td">{{ forloop.counter }}</td>
+                <td class="favorite-td song-img-td"><img src="{{ song.artwork_url }}" alt="{{ song.track_name }}" class="song-img"></td>
+                <td class="favorite-td">{{ song.track_name }}</td>
+                <td class="favorite-td">{{ song.artist_name }}</td>
+                <td class="favorite-td">{{ song.album_name }}</td>
+                <td class="favorite-td">
+                    {% if song.preview_url %}
+                        <audio controls>
+                            <source src="{{ song.preview_url }}" type="audio/mpeg">
+                        </audio>
+                    {% else %}
+                        {% trans "なし" %}
+                    {% endif %}
+                </td>
+                <td class="favorite-td">
+                    <a href="{% url 'app:favorite-detail' song.id %}">
+                        <img src="{% static 'app/img/+.png' %}" class="plus-img">
+                    </a>
+                </td>
+                <td class="favorite-td">
+                    <a href="{% url 'app:favorite-detail' song.id %}">
+                        <img src="{% static 'app/img/ranking-icon.png' %}" class="ranking-img">
+                    </a>
+                </td>
+                <td class="favorite-td">
+                    <a href="{% url 'app:favorite-detail' song.id %}">
+                        {% trans "確認" %}
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% else %}
+    <p>{% trans "お気に入りはまだありません。" %}</p>
+{% endif %}
+
+</div>
+{% endblock %}

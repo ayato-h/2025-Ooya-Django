@@ -1,0 +1,332 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+body {
+    background-color: #e6e6e6;
+}
+
+.logo-img {
+    width: 35px;    
+    height: auto; 
+}
+
+nav {
+    background-color: #111111; 
+    padding: 20px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.nav-left{
+    display: flex;
+    gap: 20px;
+}
+
+.nav-left a.nav-link-left {
+    color: red;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.nav-right {
+    display: flex;
+    gap: 20px; 
+}
+
+.nav-right a.nav-link-right,
+.nav-right a.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-right a:hover,
+.nav-left a.nav-link-left:hover {
+    text-decoration: underline;
+}
+
+.content-body {
+    padding: 20px;
+}
+
+.game-container {
+    padding: 20px;
+}
+
+.game-card {
+    background-color: #222; 
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.game-title {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.game-text{
+    color: white;
+    margin-bottom: 15px;
+}
+
+.play-button {
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 17px;
+    border-radius: 10px;
+    background-color: #e6e6e6;
+}
+
+.play-button:hover {
+    background-color: red;
+}
+
+.card-img {
+    width: 180px;
+    height: auto;
+}
+
+.card-back {
+    width: 180px;
+    height: 254.83px;
+    border-radius: 8px;
+    background-color: white;
+    color: black;
+    font-size: 64px;
+    font-weight: bold;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signup, .login {
+    background-color: #222;
+    color: white;
+    display: flex;               
+    flex-direction: column;      
+    justify-content: center;     
+    align-items: center;         
+    text-align: center;          
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;            
+    margin: 100px auto;          
+    box-sizing: border-box;  
+}
+
+.signup input,
+.login input {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    width: 100%;  
+    box-sizing: border-box;  
+}
+
+.signup span,
+.login span {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+form.signup button,
+form.login button {
+    padding: 10px 40px;      
+    border: none;
+    border-radius: 5px;
+    background-color: white; 
+    font-weight: bold;
+    cursor: pointer;
+    margin: 20px auto 0 auto; 
+    display: block;
+}
+
+form.signup button:hover,
+form.login button:hover {
+    background-color: #f0f0f0;  
+}
+
+/* バカラ */
+
+.baccarat-hands-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+}
+
+.baccarat-hands-row {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap; 
+    width: 100%;
+}
+
+.baccarat-hand {
+    display: flex;
+    flex-direction: column;
+    background-color: #222;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    min-width: 600px;   
+    max-width: 650px;   
+    box-sizing: border-box;
+}
+
+
+.baccarat-hand h1{
+    border-bottom: 3px solid #ccc;
+}
+
+.baccarat-hand .hand-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.hand-body{
+    margin-top: 12px; 
+}
+
+.baccarat-hand .hand-body {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+}
+
+.baccarat-hand .card-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;  
+    padding-bottom: 10px;
+    flex-wrap: nowrap; 
+}
+
+
+.baccarat-hand .card-container .card-img {
+    flex-shrink: 0;   
+    width: 180px;
+}
+
+
+
+.baccarat-hand .hand-score {
+    font-weight: bold;
+    font-size: 90px;
+    margin-right: 50px;
+    display: flex;
+    align-items: center;   
+}
+
+.next-button {
+    display: inline-block; 
+    padding: 15px 40px;
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-align: center; 
+
+    background: #222;
+    border: none;
+    border-radius: 8px;          
+
+    text-decoration: none; 
+         
+}
+
+.next-button[type="submit"] {
+    padding: 15px 60px;
+}
+
+.natural{
+    font-size: 50px;
+}
+
+.baccarat-result{
+    text-align: center; 
+}
+
+.result-text{
+    font-size: 80px;
+    border-bottom: 3px solid #ccc;
+}
+
+.play-buttons{
+    display: flex;
+    justify-content: space-between; 
+    gap: 10px;                      
+    width: 350px;          
+    margin: 40px auto;     
+    padding: 20px;
+    background-color: #222;
+    border-radius: 10px;
+}
+
+.play-button-center {
+    display: block;        
+    margin: 0 auto;        
+    padding: 10px 20px;
+    font-size: 17px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    background-color: #e6e6e6;
+    cursor: pointer;
+}
+
+.amount-text{
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+}
+
+.baccara-table {
+    border-collapse: collapse;
+    margin: 20px auto;
+    background-color: #222; 
+}
+
+.baccara-table td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border: 3px solid white;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.baccara-table td.player {
+    color: #00bfff;
+}
+
+.baccara-table td.banker {
+    color: #ff4500;
+}
+
+.baccara-table td.tie {
+    color: #ffff00;
+}
+
+.baccara-table td.empty {
+    background-color: #222; 
+    border: 3px solid white;
+    color: transparent;
+}
+

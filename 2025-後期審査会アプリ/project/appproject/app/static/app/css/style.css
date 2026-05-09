@@ -1,0 +1,1371 @@
+/* ============================ */
+/* 全体 */
+/* ============================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+.content-body {
+    padding: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #1DB954;
+}
+
+h2 {
+    color: #1DB954;
+}
+
+body.white {
+    --main-color: #e6e6e6;
+    --text-color: black;
+    --background-color: #222;
+    --sub-color: #efefef;
+}
+
+body.black {
+    --main-color: #2b2b2b;
+    --text-color: white;
+    --background-color: #ccc;
+    --sub-color: #222;
+}
+
+body {
+    background-color: var(--main-color);
+    color: var(--text-color);
+}
+
+th {
+    background-color: var(--background-color);
+    color: var(--main-color);
+}
+
+td {
+    background-color: var(--sub-color);
+    color: var(--text-color);
+}
+
+a {
+    color: var(--text-color);
+}
+
+input {
+    padding: 7px 10px;
+    font-size: 15px;
+    border-radius: 10px;
+    display: block;
+}
+
+button {
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 2px solid #222;
+    color: black;
+    background-color: white;
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+/* ナビバー */
+
+.logo-img,
+.setting-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+
+}
+
+.logo-img {
+    width: 70px;
+    height: 45px;
+    object-fit: cover;      
+    object-position: top;
+    margin-right: -10px;
+    margin-top: -10px;
+}
+
+.friend-img {
+    width: 55px;
+    height: auto;
+    margin-top: -4px;
+    margin-bottom: -7px;
+    margin-left: -7px;
+    margin-right: -3px;
+}
+
+nav {
+    background-color: #222;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-left {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-left a.nav-link-left {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nav-right {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-right a.nav-link-right,
+.nav-right a.nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    align-items: center;
+}
+
+.nav-right a:hover,
+.nav-left a.nav-link-left:hover {
+    text-decoration: underline;
+}
+
+.score-nav {
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
+}
+
+.nav-link-left.active-link {
+    color: #1DB954 !important; 
+    font-weight: bold; 
+}
+
+.nav-link-right.active-link {
+    color: #1DB954 !important; 
+    font-weight: bold; 
+}
+
+span.nav-link-left.active-link {
+    color: #1DB954 !important;
+    font-weight: bold;
+}
+
+.ranking-img {
+    width: 150px;
+    margin-top: -35px;
+    margin-bottom: -40px;
+    margin-left: -60px;
+    margin-right: -60px;
+}
+
+/* ============================ */
+/* index.html */
+/* ============================ */
+
+.index {
+    margin-bottom: 30px;
+}
+
+.index table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.index th,
+.index td {
+    border: 2px solid #222;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.index th {
+    font-weight: bold;
+}
+
+.index a {
+    color: var(--text-color);
+}
+
+.index.song-score ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.index.song-score a {
+    color: white;
+    text-decoration: none;
+}
+
+.index.song-score li {
+    margin-top: 10px;
+}
+
+.favorite-link {
+    text-align: right;
+    text-decoration: underline;
+}
+
+.favorite-link {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.index-score {
+    margin-bottom: 10px;
+}
+
+.index-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.index-card li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.index-card .index {
+    flex: 1;
+}
+
+.mission-img {
+    width: 100px;
+    height: auto;
+}
+
+.mission-card {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: -15px;
+    margin-bottom: -10px;
+    margin-left: -15px;
+}
+
+.index-h2 {
+    display: flex;
+}
+
+.index-h2 img{
+    margin-top: -15px;
+    margin-bottom: -10px;
+    margin-left: -30px;
+    margin-right: -25px;
+    width: 110px;
+}
+
+.album-img {
+    width: 30px;
+    height: auto;
+}
+    
+/* 採点記録 */
+
+.song-score {
+    padding: 40px;
+    background-color: #222;
+    border-radius: 30px;
+    color: white;
+}
+
+.song-score-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 検索 */
+.song-search {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: -20px;
+}
+
+.song-search-form,
+.setting-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.song-search-span {
+    display: flex;
+    align-items: center;
+    border: 2px solid #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.song-search-span span {
+    padding: 7px 10px;
+    font-weight: bold;
+    color: #1DB954;
+    background-color: #222;
+    border-right: 2px solid #222;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.song-search-span input {
+    border: none;
+    outline: none;
+    border-radius: 0;
+    background-color: #e6e6e6;
+}
+
+.song-search-button,
+.setting-button {
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 2px solid #222;
+    color: white;
+    background-color: #222;
+    outline: none;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.setting-button {
+    background-color: white;
+    color: black;
+}
+
+.search-img {
+    width: 22px;
+    height: auto;
+}
+
+/* ============================ */
+/* setting.html */
+/* ============================ */
+
+.setting-select {
+    padding: 7px 14px;
+    border-radius: 10px;
+    border: 2px solid #222;
+    font-size: 15px;
+    width: 105px;
+    text-align: center;
+}
+
+.setting-form {
+    margin-bottom: 15px;
+}
+
+.setting {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.setting h2 {
+    width: 150px;
+}
+
+/* ============================ */
+/* song_list.html */
+/* ============================ */
+
+/* 曲目 */
+.song-search a {
+    min-width: 40px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.song-search-th.detail {
+    text-align: center;
+}
+
+.song-search-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.song-search-th,
+.song-search-td {
+    border-bottom: 3px solid white;
+    padding: 8px 12px;
+    text-align: left;
+}
+
+.song-search-th {
+    background-color: #ccc;
+    font-weight: bold;
+    color: black;
+}
+
+.song-search-td[colspan="4"] {
+    text-align: center;
+    font-style: italic;
+    color: #555;
+}
+
+.song-list-search {
+    margin-bottom: 20px;
+}
+
+.song-img {
+    width: 40px;
+    height: auto;
+    padding: 0;
+
+}
+
+.plus-img {
+    width: 30px;
+}
+
+/* ============================ */
+/* song_detail.html */
+/* ============================ */
+
+.song-detail p {
+    margin-bottom: 10px;
+}
+
+.song-detail a {
+    display: block;
+    margin-top: 10px;
+}
+
+.song-detail button {
+    margin: 10px 0 10px;
+}
+
+/* ============================ */
+/* login.html */
+/* ============================ */
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 50px auto;
+    width: 300px;
+    border: none; 
+}
+
+.login div {
+    width: 100%;
+}
+
+.login input,
+.login button,
+.login label {
+    width: 100%;
+}
+
+.login button {
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.login label,
+.login p {
+    display: block;
+    text-align: center;
+    width: 300px;
+
+}
+
+.login input[type="radio"] {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+.login label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+/* ============================ */
+/* favorite.html */
+/* ============================ */
+
+.favorite-table {
+    width: 100%;
+    border-collapse: collapse; 
+}
+
+.favorite-th,
+.favorite-td {
+    background-color: #222;
+    color: white;
+    padding: 8px 12px; 
+    text-align: left;
+}
+
+.favorite-table thead th {
+    border-bottom: 2px solid white; 
+    padding-bottom: 20px;
+}
+
+.favorite-table th {
+    font-weight: bold;
+    color: #1DB954;
+    
+}
+
+
+.favorite-table th:nth-child(1),
+.favorite-table td:nth-child(1) { width: 40px; }   /* #（番号） */
+.favorite-table th:nth-child(2),
+.favorite-table td:nth-child(2) { width: 10px; padding-right: 0;}   /* 画像 */
+.favorite-table th:nth-child(3),
+.favorite-table td:nth-child(3) { width: 220px; }  /* 曲名 */
+.favorite-table th:nth-child(4),
+.favorite-table td:nth-child(4) { width: 200px; }  /* アーティスト */
+.favorite-table th:nth-child(5),
+.favorite-table td:nth-child(5) { width: 220px; }  /* アルバム */
+.favorite-table th:nth-child(6),
+.favorite-table td:nth-child(6) { width: 120px; }  /* プレビュー */
+.favorite-table th:nth-child(7),
+.favorite-table td:nth-child(7) { width: 80px; }   /* 点数 */
+.favorite-table th:nth-child(8),
+.favorite-table td:nth-child(8) { width: 80px; }    /* 順位 */
+.favorite-table th:nth-child(9),
+.favorite-table td:nth-child(9) { width: 80px; }    /* 詳細 */
+
+/* ============================ */
+/* favorite_detail.html */
+/* ============================ */
+
+.btn {
+    display: flex;
+    gap: 10px; 
+}
+
+.btn a,
+.btn button {
+    width: 140px;
+    height: 45px;
+
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    text-decoration: none;   
+}
+
+.tab-button {
+    padding: 7px 20px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background: #f0f0f0;
+    margin-right: 5px;
+}
+.tab-button.active { background: #fff; font-weight: bold; }
+.tab-content { border: 1px solid #ccc; padding: 15px; background: #fff; border-radius: 30px}
+.tabs{
+    margin-bottom: 10px;
+}
+.tab-panel {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    display: flex;      /* ← blockではなくflex */
+    flex-direction: column; /* 子要素は縦並び */
+}
+.tab-panel:not(.active) {
+    display: none;      /* 非アクティブは非表示 */
+}
+.tab-panel.active { display: block; }
+
+.lyrics-textarea {
+    width: 100%;
+}
+
+.lyrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.lyrics-table th {
+    color: white;
+    text-align: left;
+    padding: 5px 10px;
+    
+    
+}
+
+.lyrics-table td {
+    align-items: center;
+    padding: 6px;
+    background-color: white;
+}
+
+.lyrics-table th:nth-child(1),
+.lyrics-table td:nth-child(1) {
+    width: 60px;     
+    text-align: center;
+    border-top-left-radius: 70px;
+    border-bottom-left-radius: 70px;
+}
+
+.lyrics-table td:nth-child(1) {
+    margin: 0 auto;
+}
+
+.lyrics-table th:nth-child(2),
+.lyrics-table td:nth-child(2) {
+    width: auto;      
+    padding-left: 16px;
+}
+
+.lyrics-table th:nth-child(3),
+.lyrics-table td:nth-child(3) {
+    width: 60px;
+    border-top-right-radius: 70px;
+    border-bottom-right-radius: 70px;
+}
+
+.song-date {
+    display: flex;            
+    flex-direction: column;   
+    max-width: 50%;           
+    box-sizing: border-box;
+}
+
+.song-date h3,
+.song-date li {
+    margin-bottom: 8px;
+}
+.song-date li{
+    width: 450px;    
+}
+
+.song-date ul {
+    list-style: none; 
+    padding-left: 0;  
+    margin: 0;        
+}
+
+.song-date hr {
+    border: none;               
+    height: 1px;                
+    background-color: black;   
+    margin: 10px 0;   
+    width: 450px;
+}
+
+.tab-content {
+    display: flex; 
+    gap: 20px; 
+    align-items: flex-start;
+}
+
+.tab-panel {
+    flex: 1;                
+    min-width: 300px;       
+    max-width: 1000px;      
+    display: none;          
+}
+
+.tab-panel.active {
+    display: block;        
+}
+
+.favorite-detai {
+    display: flex;         
+    gap: 10px;             
+    align-items: flex-start;
+}
+
+.song-detail {
+    width: 450px;
+}
+
+.favorite-detai > div:nth-child(2) {
+    flex: 1;                     /* 右カラムは残り幅を最大化 */
+}
+/* ============================ */
+/* create_score.html */
+/* ============================ */
+
+.form-group {
+    display: flex;
+    margin-bottom: 10px;
+
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+.form-group label {
+    width: 150px;
+}
+
+.form-group label {
+    padding: 7px 10px;
+}
+
+.form-btn {
+    margin-top: 10px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 5px 10px;
+    width: 200px;
+    border-radius: 7px;
+    border: none;
+}
+
+.custom-file {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-family: serif;
+    gap: 10px;
+}
+
+.custom-file input[type="file"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.custom-label {
+    display: inline-block;
+    width: 150px;
+    padding: 7px 12px;
+    background-color: white;
+    border-radius: 7px;
+    color: black;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+    font-family: serif;
+}
+
+/* ============================ */
+/* score_list.html */
+/* ============================ */
+
+.score-table {
+    border-collapse: collapse; 
+}
+
+.score-table td {
+    background-color: #222;
+    color: white;
+
+}
+
+.score-table a {
+    color: white;
+}
+
+.score-table thead th {
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    background-color: #222;
+    color: white;
+    font: bold;
+}
+
+.score-table th, .score-table td {
+    border: none; 
+}
+
+.song-group {
+    margin-bottom: 40px;
+    background-color: #222;
+    padding: 40px;
+    border-radius: 30px;
+    color: white;
+}
+
+.song-group h2 {
+    margin-bottom: 20px; 
+}
+
+.song-group a {
+    color: white;
+    text-decoration: none; 
+}
+
+.score-table th:nth-child(1),
+.score-table td:nth-child(1) { width: 60px; }   /* キー */
+.score-table th:nth-child(2),
+.score-table td:nth-child(2) { width: 80px; }   /* 点数 */
+.score-table th:nth-child(3),
+.score-table td:nth-child(3) { width: 80px; }   /* 機種 */
+.score-table th:nth-child(4),
+.score-table td:nth-child(4) { width: 100px; }  /* 画像 */
+.score-table th:nth-child(5),
+.score-table td:nth-child(5) { width: 120px; }  /* 日付 */
+.score-table th:nth-child(6),
+.score-table td:nth-child(6) { width: 30px; }   /* 削除 */
+
+.score-h2 a {
+    color: #1DB954;
+}
+
+.score-h2 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* ============================ */
+/* delete_score.html */
+/* ============================ */
+
+.delete-form {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.delete-form button {
+    padding: 7px 50px;
+}
+
+/* ============================ */
+/* history.html */
+/* ============================ */
+
+.history a {
+    color: white;
+}
+
+.history li {
+    margin-top: 10px;
+}
+
+.history .song-score {
+    margin-bottom: 20px;
+}
+
+/* ============================ */
+/* clac.html */
+/* ============================ */
+
+.result {
+    display: flex;
+    gap: 30px;
+    width: 100%;          
+    justify-content: center; 
+    margin-bottom: 30px;
+}
+
+.result-card {
+    flex: 1;               
+    min-width: 400px; 
+    padding: 40px;
+    background-color: #222;
+    border-radius: 30px;
+    text-align: center; 
+    color: white; 
+    
+}
+
+.result span {
+    background-color: #fff;
+    padding: 8px 15px;
+    margin: 10px;
+    border-radius: 10px;
+    color: black;
+}
+
+.radio-group {
+    display: flex;         
+    gap: 1px;              
+    align-items: center;   
+}
+
+.radio-group label {
+    display: flex;       
+    align-items: center; 
+    cursor: pointer;    
+    white-space: nowrap;  
+}
+
+/* ============================ */
+/* profile.html */
+/* ============================ */
+
+.account-info {
+    display: flex;
+}
+
+.profile {
+    width: 70%;
+}
+
+.account-info p {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.account-info .label {
+    display: inline-block;
+    width: 150px; 
+    font-weight: bold;
+}
+
+.username, .catchphrase {
+    font-weight: bold;
+}
+
+.username {
+    font-size: 50px;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding: 0;
+}
+
+.catchphrase {
+    font-size: 25px;
+    display: block;
+    width: fit-content; 
+    margin: 0 auto;
+}
+
+.avatar {
+    width: 100px;
+    height: auto;
+}
+
+.profile-card {
+    display: flex;
+    flex-direction: row;     
+    align-items: center;     
+    gap: 20px;  
+    height: 125px;             
+}
+
+.profile-card-sub {
+    display: block;
+}
+
+
+/* ============================ */
+/* quiz.html */
+/* ============================ */
+
+.quiz-preview {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.quiz-choices {
+    display: flex;        
+    gap: 10px;            
+}
+
+.quiz-choices button {
+    flex: 1;              
+    text-align: center;   
+    padding: 9px;         
+    cursor: pointer;
+}
+
+.quiz-a {
+    display: inline-block;   
+    font-weight: bold;           
+    margin-top: 20px;
+}
+
+/* ============================ */
+/* unlock.html */
+/* ============================ */
+
+.unlock {
+    margin-top: 30px;
+    display: flex;
+    gap: 30px;
+    width: 100%;          
+    justify-content: center; 
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+.unlock-card {
+    flex: 1;               
+    min-width: 400px; 
+    padding: 40px;
+    background-color: #222;
+    border-radius: 30px;
+    text-align: center; 
+    color: white; 
+}
+
+/* ============================ */
+/* chat_room.html */
+/* ============================ */
+
+.chat-container {
+    max-width: 600px;
+    margin: auto;
+}
+
+.my-message {
+    text-align: right;
+    background-color: #d1e7dd;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.friend-message {
+    text-align: left;
+    background-color: #f8d7da;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.chat-form input {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.chat-form button {
+    margin-top: 10px;
+    display: block;
+}
+
+/* ============================ */
+/* ranking.html */
+/* ============================ */
+
+.hidden {
+    display: none;
+}
+
+.ranking table{
+    width: 100%;
+}
+
+.ranking select {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    width: 200px;
+    border-radius: 7px;
+    border: none;
+}
+
+.user_search {
+    margin-top: 30px;
+    padding: 30px;
+    background-color: #222;
+    border-radius: 30px;
+    color: white;
+}
+
+.user_search span {
+    display: inline-block;
+    width: 150px;
+    margin-top: 7px;
+}
+
+.user_search ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.user_search a {
+    color: white;
+}
+
+.song-dropdown {
+    position: relative;
+    width: 600px;
+}
+
+.dropdown-trigger {
+    padding: 3px 10px;
+    cursor: pointer;
+    background: white;
+    color: black;
+    border-radius: 10px;
+    width: 200px;
+    font-size: 14px;
+
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background: white;
+    width: 100%;
+    min-height: 200px;
+    z-index: 1000;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    border-top: 2px solid #222;
+}
+
+.song-dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.artist-list {
+    width: 195px;
+}
+
+.artist-list,
+.song-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+    border-right: 1px solid #eee;
+}
+
+.song-list {
+    border-right: none;
+}
+
+.artist-item,
+.song-item {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.artist-item:hover,
+.song-item:hover {
+    border-radius: 30px;
+    background: #f0f0f0;
+}
+
+
+.song-list li.song-item {
+    margin: 0;      
+    padding: 6px 10px;
+    line-height: 1.2; 
+}
+
+
+.artist-list li.artist-item {
+    margin: 0;
+    padding: 6px 10px;
+    line-height: 1.2;
+}
+
+.song-dropdown .dropdown-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.song-dropdown .dropdown-menu li {
+    margin: 0;
+    padding: 4px 10px;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+
+
+/* ============================ */
+/* friends_list.html */
+/* ============================ */
+
+
+.friend-table tbody + tbody {
+    border-top: 1px solid white;
+}
+
+/* ============================ */
+/* スマホ用 */
+/* ============================ */
+
+@media (max-width: 600px) {
+
+    body {
+        font-size: 14px;
+    }
+
+    .content-body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+
+    nav * {
+        display: none;
+    }
+
+    .logo-img {
+        width: 60px;
+        height: 40px;
+        margin: 0;
+    }
+
+    .nav-left a.nav-link-left,
+    .nav-right a {
+        font-size: 14px;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+
+    .favorite-table,
+    .song-search-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .favorite-table th,
+    .favorite-table td {
+        font-size: 12px;
+    }
+
+    .btn {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn a,
+    .btn button {
+        width: 100%;
+    }
+
+    .tab-button {
+        padding: 6px 12px;
+        font-size: 13px;
+    }
+
+    .tab-content {
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    .lyrics-table th:nth-child(1),
+    .lyrics-table td:nth-child(1),
+    .lyrics-table th:nth-child(3),
+    .lyrics-table td:nth-child(3) {
+        width: 40px;
+        font-size: 12px;
+    }
+
+    .lyrics-table td {
+        font-size: 13px;
+    }
+
+
+    .form-group {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: left;
+    }
+
+    .form-group label {
+        width: auto;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+    }
+
+
+    .song-score,
+    .song-group,
+    .result-card,
+    .unlock-card {
+        padding: 20px;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+
+    .index-card {
+        gap: 10px;
+    }
+
+    .song-search-form,
+    .setting-form {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .song-search-span span {
+        padding: 10px 10px;
+    }
+
+    .result {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .account-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .profile {
+        width: 100%;
+    }
+
+    .username {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .catchphrase {
+        font-size: 18px;
+    }
+
+    .profile-card {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+    }
+
+    .quiz-choices {
+        flex-direction: column;
+    }
+
+}
+

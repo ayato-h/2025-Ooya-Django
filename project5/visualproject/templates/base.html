@@ -1,0 +1,80 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} - ビジュアルアプリ</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'visual/css/style.css' %}">
+</head>
+
+
+
+<header>
+    <h1 id="logo"><a href="{% url 'visual:index' %}"><img src="{% static 'visual/images/logo.png' %}" alt="SAMPLE COMPANY"></a></h1>
+    <nav>
+        <ul>
+            <li><a href="{% url 'visual:index' %}#koe">お客様の声</a></li>
+            <li><a href="{% url 'visual:index' %}#products">制作実績</a>
+                <ul>
+                <li><a href="#">ドロップダウンメニュー</a></li>
+                <li><a href="#">ドロップダウンメニュー</a></li>
+                <li><a href="#">ドロップダウンメニュー</a></li>
+                </ul>
+            </li>
+            <li><a href="{% url 'visual:index' %}#plan">料金プラン</a></li>
+            <li><a href="{% url 'visual:index' %}#faq">よく頂く質問</a></li>
+            <li><a href="{% url 'visual:index' %}#flow">制作の流れ</a></li>
+            <li><a href="{% url 'visual:contact' %}">お問い合わせ</a></li>
+        </ul>
+    </nav>
+</header>
+
+<body>
+    <div class="content-body">
+        <h1>{% block h1 %}{% endblock %}</h1>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+
+<footer>
+
+<div>
+<p class="logo"><img src="{% static 'visual/images/logo.png' %}" alt="SAMPLE COMPANY"></p>
+<ul class="icons">
+<li><a href="#"><i class="fa-brands fa-x-twitter"></i></a></li>
+<li><a href="#"><i class="fab fa-line"></i></a></li>
+<li><a href="#"><i class="fab fa-youtube"></i></a></li>
+<li><a href="#"><i class="fab fa-instagram"></i></a></li>
+</ul>
+<p>東京都XXX区XXXXビル１F<br>
+03-0000-0000</p>
+<small>Copyright&copy; SAMPLE COMPANY All Rights Reserved.</small>
+</div>
+
+<div>
+
+<ul>
+<li><a href="#koe">お客様の声</a></li>
+<li><a href="#products">制作実績</a></li>
+<li><a href="#plan">料金プラン</a></li>
+<li><a href="#faq">よく頂く質問</a></li>
+<li><a href="#flow">制作の流れ</a></li>
+<li><a href="{% url 'visual:contact' %}">お問い合わせ</a></li>
+</ul>
+
+<ul>
+<li><a href="#">その他のメニューがあれば</a></li>
+<li><a href="#">その他のメニューがあれば</a></li>
+<li><a href="#">その他のメニューがあれば</a></li>
+</ul>
+
+</div>
+
+</footer>
+
+<span class="pr"><a href="https://template-party.com/" target="_blank">《Web Design:Template-Party》</a></span>
+
+
+</html>

@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} High & Low {% endblock %}
+{% block h1 %} High & Low{% endblock %}
+
+{% block content %}
+
+<!--▼▼▼▼▼ここから「こんなお悩みありませんか？」-->
+<section class="bg1 bg-pattern1 arrow">
+
+<h2 class="high-and-low">Dice</h2>
+
+<div class="list-grid1">
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/dice' %}{{ dice1 }}.png" alt=""></figure>
+
+<span class="num">01</span>
+</div>
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/dice' %}{{ dice2 }}.png" alt=""></figure>
+
+<span class="num">02</span>
+</div>
+
+<div class="list bg-black up">
+<figure class="icon"><img src="{% static 'visual/images/dice' %}{{ dice3 }}.png" alt=""></figure>
+
+<span class="num">03</span>
+</div>
+
+
+</div>
+<!--/.list-grid1-->
+
+<div class="dice-total">
+    <p class="total-num">{{ dice1 }} + {{ dice2 }} + {{ dice3 }}</p>
+        
+    <p class="total">
+        {% if 9 >= total %}
+        ★☆☆    
+        {% elif 14 >= total %}
+        ★★☆    
+        {% else %}
+        ★★★      
+        {% endif %}    
+        <br>{{ total }}
+    </p>
+
+    <span class="num">All</span>
+</div>
+
+<div class="button-container">
+    <form method="get" action="{% url 'visual:dice' %}">
+        <button type="submit" class="play-button reroll">Reroll</button>
+    </form>
+</div>
+
+</section>
+<!--▲▲▲▲▲ここまで「こんなお悩みありませんか？」-->
+
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+
+
+<!--開閉ブロック-->
+<div id="menubar">
+
+<p class="logo"><img src="{% static 'visual/images/logo.png' %}" alt="SAMPLE COMPANY"></p>
+
+<nav>
+<ul>
+<li><a href="#">ホーム</a></li>
+<li><a href="#koe">お客様の声</a></li>
+<li><a href="#products">制作実績</a>
+	<ul>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	</ul>
+</li>
+<li><a href="#plan">料金プラン</a></li>
+<li><a href="#faq">よく頂く質問</a></li>
+<li><a href="#flow">制作の流れ</a></li>
+<li><a href="{% url 'visual:contact' %}">お問い合わせ</a></li>
+</ul>
+</nav>
+
+</div>
+<!--/#menubar-->
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="{% static 'visual/js/jquery.inview_set.js' %}"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="{% static 'visual/js/main.js' %}"></script>
+
+{% endblock %}

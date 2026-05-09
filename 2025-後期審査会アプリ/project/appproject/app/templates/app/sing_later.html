@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "後で歌う" %} {% endblock %}
+
+{% block content %}
+<div class="index">
+    <div class="song-search">
+        <form method="get" action="" class="song-search-form">
+            <div class="song-search-span">
+                <span>{% trans "曲検索" %}</span>
+                <input class="song-search-input" type="text" name="q"
+                    placeholder="{% trans 'アーティスト名や曲名' %}"
+                    value="{{ query|default:'' }}">
+            </div>
+            <button class="song-search-button" type="submit">{% trans "検索" %}</button>
+        </form>
+
+        {% if request.GET.q == "" and request.GET %}
+            <p style="color:red;">{% trans "検索ワードを入力してください" %}</p>
+        {% endif %}
+    </div>
+</div>
+
+<div class="index song-score">
+{% if songs %}
+    <table class="favorite-table">
+        <thead>
+            <tr>
+                <th class="favorite-th">#</th>
+                <th class="favorite-th"></th>
+                <th class="favorite-th">{% trans "曲名" %}</th>
+                <th class="favorite-th">{% trans "アーティスト" %}</th>
+                <th class="favorite-th">{% trans "アルバム" %}</th>
+                <th class="favorite-th">{% trans "プレビュー" %}</th>
+                <th class="favorite-th">{% trans "後で歌う" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+            <tr>
+                <td class="favorite-td">{{ forloop.counter }}</td>
+                <td class="favorite-td song-img-td"><img src="{{ song.artwork_url }}" alt="{{ song.track_name }}" class="song-img"></td>
+                <td class="favorite-td">{{ song.track_name }}</td>
+                <td class="favorite-td">{{ song.artist_name }}</td>
+                <td class="favorite-td">{{ song.album_name }}</td>
+                <td class="favorite-td">
+                    {% if song.preview_url %}
+                        <audio controls>
+                            <source src="{{ song.preview_url }}" type="audio/mpeg">
+                        </audio>
+                    {% else %}
+                        {% trans "なし" %}
+                    {% endif %}
+                </td>
+                <td class="favorite-td">
+                    <button class="later-button" data-song-id="{{ song.id }}">
+                        {% trans "解除" %}
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>{% trans "後で歌うリストはまだ空です。" %}</p>
+{% endif %}
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".later-button");
+
+    buttons.forEach(button => {
+        button.addEventListener("click", function(e) {
+            e.preventDefault();
+            const songId = this.dataset.songId;
+            const csrfToken = '{{ csrf_token }}';
+
+            fetch(`/sing/${songId}/later/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrfToken,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "removed") {
+                    button.closest("tr").remove();
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

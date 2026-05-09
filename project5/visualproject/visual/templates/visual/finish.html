@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Baccara {% endblock %}
+{% block h1 %} Baccara {% endblock %}
+
+{% block content %}
+
+ 
+  
+<div id="container">
+
+
+<main>
+
+
+<!--▼▼▼▼▼ここから「お問い合わせフォーム」-->
+<section>
+
+<h2 class="c">送信完了<span>Contact</span></h2>
+
+<p>送信が完了しました。</p>
+
+</section>
+<!--▲▲▲▲▲ここまで「お問い合わせフォーム」-->
+
+
+
+</main>
+
+</div>
+<!--/#container-->
+
+
+
+<!--開閉ボタン（ハンバーガーアイコン）-->
+<div id="menubar_hdr">
+<span></span><span></span><span></span>
+</div>
+
+
+
+<!--開閉ブロック-->
+<div id="menubar">
+
+<p class="logo"><img src="{% static 'visual/images/logo.png' %}" alt="SAMPLE COMPANY"></p>
+
+<nav>
+<ul>
+<li><a href="{% url 'visual:index' %}">ホーム</a></li>
+<li><a href="{% url 'visual:index' %}#koe">お客様の声</a></li>
+<li><a href="{% url 'visual:index' %}#products">制作実績</a>
+	<ul>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	<li><a href="#">ドロップダウンメニュー</a></li>
+	</ul>
+</li>
+<li><a href="{% url 'visual:index' %}#plan">料金プラン</a></li>
+<li><a href="{% url 'visual:index' %}#faq">よく頂く質問</a></li>
+<li><a href="{% url 'visual:index' %}#flow">制作の流れ</a></li>
+<li><a href="contact.html">お問い合わせ</a></li>
+</ul>
+</nav>
+
+<p>ここのブロックは、htmlの下の方にある&lt;div id=&quot;menubar&quot;&gt;で編集できます。<br>
+ヘッダーのメニューとは別のブロックになるので注意して下さい。</p>
+
+</div>
+<!--/#menubar-->
+
+
+
+<!--jQueryの読み込み-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!--パララックス（inview）-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/protonet-jquery.inview/1.1.2/jquery.inview.min.js"></script>
+<script src="{% static 'visual/js/jquery.inview_set.js' %}"></script>
+
+<!--このテンプレート専用のスクリプト-->
+<script src="{% static 'visual/js/main.js' %}"></script>
+
+{% endblock %}

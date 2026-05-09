@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "クイズ" %} {% endblock %}
+
+{% block content %}
+<div class="index song-score quiz">
+    {% if error %}
+    <p>{% trans "クイズをするにはお気に入りを4曲以上登録してください" %}</p>
+    {% else %}
+        <h2>{% trans "次の曲のタイトルは？" %}</h2>
+        <div class="quiz-preview">
+            <audio controls>
+                <source src="{{ fav_song.preview_url }}" type="audio/mpeg">
+            </audio>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+            <div class="quiz-choices">
+                {% for choice in choices %}
+                    <button type="submit" name="draw_{{ forloop.counter }}" value="{{ choice.id }}">
+                        {{ choice.track_name }} - {{ choice.artist_name }}
+                    </button>
+                {% endfor %}
+            </div>
+        </form>
+
+        {% if correct != None %}
+            {% if correct %}
+                <p style="color:green;">{% trans "正解" %}　{{ fav_song.track_name }} - {{ fav_song.artist_name }}</p>
+            {% else %}
+                <p style="color:red;">{% trans "不正解" %} ({% trans "正解:" %} {{ fav_song.track_name }} - {{ fav_song.artist_name }})</p>
+            {% endif %}
+            <a href="{% url 'app:quiz' %}" class="quiz-a">{% trans "次の問題" %}</a>
+        {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}

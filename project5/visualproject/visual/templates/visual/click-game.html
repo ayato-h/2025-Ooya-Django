@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block title %}Click Game{% endblock %}
+{% block h1 %}Click Game{% endblock %}
+
+{% block content %}
+
+<section id="products">
+    <div class="game-container">
+        <p class="timer">Time <br><span id="time">10</span></p>
+        <p class="score">
+            <span id="count">0</span>
+        </p>
+    
+        <button id="game-btn" class="click-button" onclick="handleClick()">
+            START
+        </button>
+    </div>
+</section>
+
+<script>
+let count = 0;
+let timeLeft = 10;
+let timer = null;
+let playing = false;
+
+const button = document.getElementById("game-btn");
+const countDisplay = document.getElementById("count");
+const timeDisplay = document.getElementById("time");
+
+function handleClick(){
+
+    // 🔵 開始していない → ゲーム開始
+    if(!playing){
+
+        count = 0;
+        timeLeft = 10;
+        playing = true;
+
+        countDisplay.textContent = count;   // ← 追加
+        timeDisplay.textContent = timeLeft; // ← 追加
+
+        button.textContent = "CLICK!!";
+
+        timer = setInterval(function(){
+            timeLeft--;
+            timeDisplay.textContent = timeLeft;  // ← 追加
+
+            if(timeLeft <= 0){
+                clearInterval(timer);
+                playing = false;
+                button.textContent = "START";
+                alert("終了！あなたのスコアは " + count + " 回！");
+            }
+        }, 1000);
+
+        return;
+    }
+
+    // 🔴 ゲーム中
+    count++;
+    countDisplay.textContent = count;  // ← 追加
+}
+</script>
+
+{% endblock %}

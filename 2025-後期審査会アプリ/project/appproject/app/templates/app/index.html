@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %} {% trans "カラオケ記録アプリ" %} {% endblock %}
+
+{% block content %}
+
+<div class="index">
+    <div class="song-search">
+        <form method="get" action="{% url 'app:song-list' %}" class="song-search-form">
+            <div class="song-search-span">
+                <span>{% trans "曲検索" %}</span>
+                <input class="song-search-input" type="text" name="q" placeholder="{% trans 'アーティスト名や曲名' %}"
+                    value="{{ query|default:'' }}">
+            </div>
+            <button class="song-search-button" type="submit">{% trans "検索" %}</button>
+        </form>
+    
+        {% if request.GET.error %}
+        <p style="color:red;">{% trans "検索ワードを入力してください" %}</p>
+        {% endif %}
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class="index song-score">
+    <h2 class="index-score">{% trans "マンスリーミッション" %}</h2>
+    <p>{% trans "現在のポイント" %}: {{ request.user.points }} pt</p>
+    <br>
+    <div class="mission-card">
+        <img src="{% static 'app/img/mission.png' %}" class="mission-img">
+        <div>
+            {% for item in user_mission_data %}
+                <p>
+                    {% if item.is_completed %}
+                        ☑
+                    {% else %}
+                        ◻︎
+                    {% endif %}
+                    {{ item.mission.title }}
+                    ({{ item.progress }} / {{ item.mission.goal }})
+                </p>
+            {% empty %}
+                <p>{% trans "今月のミッションはありません" %}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="index-card">
+    <div class="index song-score">
+        <div class="index-h2">
+            <img src="{% static 'app/img/recommend.png' %}" class="mission-img">
+            <h2 class="index-score">{% trans "おすすめ" %}</h2>
+        </div>
+            <div>
+                <ul>
+                    {% for song in recommended_songs %}
+                    <li>
+                        <span class="song-number">{{ forloop.counter }}.</span>
+                        <img src="{{ song.artwork_url }}" alt="{{ song.album_name }}" class="album-img">
+                        <a href="{% url 'app:song-detail' %}?preview_url={{ song.preview_url|urlencode }}">
+                            {{ song.track_name }} - {{ song.artist_name }}
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li>{% trans "おすすめはまだありません。" %}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </div>
+    
+    <div class="index song-score">
+        <div class="index-h2">
+            <img src="{% static 'app/img/favorite.png' %}" class="mission-img">
+            <h2>{% trans "お気に入り" %}</h2>
+        </div>
+            <div>
+                <ul>
+                    {% for song in user_favorites %}
+                    <li>
+                        <span class="song-number">{{ forloop.counter }}.</span>
+                        <img src="{{ song.artwork_url }}" alt="{{ song.album_name }}" class="album-img">
+                        <a href="{% url 'app:favorite-detail' song.id %}">
+                            {{ song.track_name }} - {{ song.artist_name }}
+                        </a>
+                    </li>
+                    {% empty %}
+                    <li>{% trans "お気に入りはまだありません。" %}</li>
+                    {% endfor %}
+                    <div  class="favorite-link">
+                        <a href="{% url 'app:favorite' %}">{% trans "続き" %}</a>
+                    </div>
+                </ul>
+            </div>
+            
+    </div>
+</div>
+
+<div class="index song-score">
+    <h2 class="index-score">{% trans "点数一覧" %}</h2>
+    {% if latest_score_logs %}
+        {% for song_group in latest_score_logs %}
+            <div class="score-h2">
+                <img src="{{ song_group.song.artwork_url }}" alt="{{ song_group.track_name }}" class="song-img">
+                <h3>{{ song_group.track_name }} - {{ song_group.artist_name }}</h3>
+            </div>
+            <table class="score-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "キー" %}</th>
+                        <th>{% trans "点数" %}</th>
+                        <th>{% trans "機種" %}</th>
+                        <th>{% trans "画像" %}</th>
+                        <th>{% trans "日付" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for log in song_group.logs %}
+                    <tr>
+                        <td>{{ log.key }}</td>
+                        <td>{{ log.score }}</td>
+                        <td>{{ log.karaoke_type }}</td>
+                        <td>
+                            {% if log.image %}
+                                <a href="{{ log.image.url }}" target="_blank">{% trans "表示" %}</a>
+                            {% else %}
+                                <p>------</p>
+                            {% endif %}
+                        </td>
+                        <td>{{ log.created_at|date:"Y/m/d H:i" }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endfor %}
+    {% else %}
+        <p>{% trans "記録はまだありません。" %}</p>
+    {% endif %}
+    <div  class="favorite-link">
+        <a href="{% url 'app:score_list' %}">{% trans "続き" %}</a>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

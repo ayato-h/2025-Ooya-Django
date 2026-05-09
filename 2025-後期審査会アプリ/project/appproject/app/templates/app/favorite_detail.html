@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+{% trans "お気に入り" %}: {{ song_obj.track_name }} - {{ song_obj.artist_name }}
+{% endblock %}
+
+{% block content %}
+<div class="favorite-detai">
+    <div class="song-detail">
+        <img src="{{ song_obj.artwork_url }}" alt="{{ song_obj.track_name }}">
+        <p>
+            <strong>{% trans "曲名" %}:</strong>
+            {{ song_obj.track_name }}
+        </p>
+        
+        <p>
+            <strong>{% trans "アーティスト" %}:</strong>
+            {{ song_obj.artist_name }}
+        </p>
+        
+        <p>
+            <strong>{% trans "アルバム" %}:</strong>
+            {{ song_obj.album_name }}
+        </p>
+        
+        <p>
+            <strong>{% trans "ジャンル" %}:</strong>
+            {{ song_obj.genre|default:"-" }}
+        </p>      
+        <div class="song-date">
+            <hr>
+            {% if aptitude_percent is not None %}
+            <h3>安定性：{{ aptitude_percent }}%</h3>
+            <ul>
+                {% for msg in aptitude_messages %}
+                <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+            {% if is_reference_value %}
+            {% endif %}
+            {% endif %}
+        </div> 
+        {% if song_obj.preview_url %}
+        <audio controls>
+            <source src="{{ song_obj.preview_url }}" type="audio/mpeg">
+            {% trans "お使いのブラウザは audio タグに対応していません。" %}
+        </audio>
+        {% endif %}
+
+
+        <div class="btn">
+
+            <form method="post" action="{% url 'app:favorite-remove' song_obj.id %}">
+                {% csrf_token %}
+                <button type="submit" class="song-search-button">
+                    {% trans "お気に入り解除" %}
+                </button>
+            </form>
+
+            <a href="{% url 'app:create_score' %}?song_id={{ song_obj.id }}"
+            class="song-search-button">
+                {% trans "点数追加" %}
+            </a>
+        </div>
+
+        <a href="{% url 'app:favorite' %}">
+            {% trans "戻る" %}
+        </a>
+    </div>
+    <div>
+        {% if score_logs %}
+        <div class="tabs">
+            <button class="tab-button active" data-target="lyrics-tab">{% trans "歌詞" %}</button>
+            <button class="tab-button" data-target="chart-tab">{% trans "グラフ" %}</button>
+        </div>
+
+        <div class="tab-content">
+
+            <div id="lyrics-tab" class="tab-panel active">
+
+                <div id="lyrics-container">
+                    <table class="lyrics-table">
+                        <thead>
+                            <tr>
+                                <th>{% trans "暗記" %}</th>
+                                <th>{% trans "歌詞" %}</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lyrics-body"></tbody>
+                    </table>
+                </div>
+
+                <!-- 編集用 -->
+                <form id="lyrics-form"
+                    method="post"
+                    action="{% url 'app:save_lyrics' song_obj.id %}"
+                    style="display:none;">
+                    {% csrf_token %}
+                    <textarea name="lyrics" rows="20" cols="70">{{ song_obj.lyrics|striptags }}</textarea><br>
+                    <button type="submit" class="song-search-button">{% trans "保存" %}</button>
+                    <button type="button" id="cancel-edit" class="song-search-button">{% trans "キャンセル" %}</button>
+                </form>
+
+                <button id="edit-lyrics" class="song-search-button">{% trans "編集" %}</button>
+            </div>
+        
+
+        <div id="chart-tab" class="tab-panel">
+            <canvas id="scoreChart"></canvas>
+            {{ score_data|json_script:"score-data" }}
+        </div>
+
+
+
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            // ===================== 歌詞表示 =====================
+            const lyricsText = `{{ song_obj.lyrics|striptags|escapejs }}`;
+            const lines = lyricsText.split("\n");
+            const tbody = document.getElementById("lyrics-body");
+
+            lines.forEach(line => {
+                if (!line.trim()) return;
+
+                const tr = document.createElement("tr");
+
+                // 暗記列
+                const tdCheck = document.createElement("td");
+                const cb = document.createElement("input");
+                cb.type = "checkbox";
+                tdCheck.appendChild(cb);
+
+                // 歌詞列
+                const tdLyric = document.createElement("td");
+                tdLyric.textContent = line;
+                tdLyric.style.color = "black";
+                tdLyric.style.backgroundColor = "white";
+
+                // ===== 更新関数 =====
+                const updateLyricStyle = () => {
+                    if (cb.checked) {
+                        tdLyric.style.backgroundColor = "white";
+                        tdLyric.style.color = "white";
+                    } else {
+                        tdLyric.style.backgroundColor = "white";
+                        tdLyric.style.color = "black";
+                    }
+                };
+
+                cb.addEventListener("change", updateLyricStyle);
+
+                tr.appendChild(tdCheck);
+                tr.appendChild(tdLyric);
+                tbody.appendChild(tr);
+            });
+
+            // ===================== 編集切替 =====================
+            const view = document.getElementById("lyrics-container");
+            const form = document.getElementById("lyrics-form");
+            const editBtn = document.getElementById("edit-lyrics");
+            const cancelBtn = document.getElementById("cancel-edit");
+
+            editBtn.onclick = () => {
+                view.style.display = "none";
+                form.style.display = "block";
+                editBtn.style.display = "none";
+            };
+            cancelBtn.onclick = () => {
+                form.style.display = "none";
+                view.style.display = "block";
+                editBtn.style.display = "inline-block";
+            };
+
+            // ===================== タブ切替 + グラフ描画 =====================
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            let chartInitialized = false;
+            let scoreChart = null;
+
+            tabButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    tabButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    tabPanels.forEach(panel => panel.classList.remove('active'));
+                    const targetPanel = document.getElementById(btn.dataset.target);
+                    targetPanel.classList.add('active');
+
+                    // グラフ描画は1回だけ
+                    if (btn.dataset.target === 'chart-tab' && !chartInitialized) {
+                        const scoreData = JSON.parse(document.getElementById('score-data').textContent);
+                        const labels = scoreData.map(item => item.date);
+                        const scores = scoreData.map(item => item.score);
+
+                        const ctx = document.getElementById('scoreChart').getContext('2d');
+                        scoreChart = new Chart(ctx, {
+                            type: 'line',
+                            data: {
+                                labels: labels,
+                                datasets: [{
+                                    label: '点数',
+                                    data: scores,
+                                    borderColor: 'rgb(54, 162, 235)',
+                                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                                    tension: 0.3,
+                                    fill: true,
+                                    pointRadius: 5,
+                                    pointHoverRadius: 7,
+                                }]
+                            },
+                            options: {
+                                responsive: true,
+                                scales: { y: { min: 0, max: 100 } }
+                            }
+                        });
+                        chartInitialized = true;
+                    }
+                });
+            });
+
+        });
+        </script>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
